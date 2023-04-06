@@ -1,44 +1,25 @@
-// document.body.onload = addElement;
+document.body.onload = grid;
 
-
-
-// function addElement() {
-
-//     // create a new div element
-//     const divOne = document.createElement("div");
-//     const divTwo = document.createElement("div");
-
-//     divOne.classList.add('grid-cell');
-//     divTwo.classList.add('grid-cell');
-
-//     // add the text node to the newly created div
-//     divOne.innerHTML = "div one";
-//     divTwo.innerHTML = "div two"
-
-//     // add the newly created element and its content into the DOM
-//     const row = document.getElementById("div1")
-//     const column = document.getElementById("div2")
-
-//     row.appendChild(divOne);
-//     column.appendChild(divTwo);
-
-// }
-
-// for(i = 0; i<16; i++) {
-
-//     addElement()
-// }
-
+// creates a grid cell
 function grid() {
-
-    const container = document.querySelector('.grid-container');
+  const container = document.querySelector('.grid-container');
+  
+  for (let i = 0; i < 256; i++) {
     const cell = document.createElement('div');
-    cell.classList.add('grid-cell');
+    cell.classList.add('grid-cell', `cell-${i}`);
     container.appendChild(cell);
+  }
+  
+  const cells = document.querySelectorAll('.grid-cell');
+  cells.forEach(cell => {
+    cell.addEventListener('mouseover', e => {
+      cell.style.backgroundColor = 'yellow';
+    });
+    // cell.addEventListener('mouseout', e => {
+    //   cell.style.backgroundColor = '';
+    // });
+  });
 }
 
 
 
-for (let i = 0; i < 256; i++) {
-  grid()
-}

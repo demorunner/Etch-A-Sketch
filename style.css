@@ -51,6 +51,7 @@
     
   }
   
-  .grid-cell:hover {
-    background-color: aqua;
+  .cell-hover:hover {
+    background-color: yellow;
   }
+  
