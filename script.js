@@ -25,15 +25,21 @@ function grid() {
     const color = e.target.value;
   });
 
+ // Add event listeners to each cell element
   cells.forEach(cell => {
-    cell.addEventListener('mouseover', e => {
+    cell.addEventListener('mousedown', e => {
+      isMouseDown = true;
       cell.style.backgroundColor = colorPicker.value;
     });
-    // cell.addEventListener('mouseout', e => {
-    //   cell.style.backgroundColor = '';
-    // });
+    cell.addEventListener('mousemove', e => {
+      if (isMouseDown) {
+        cell.style.backgroundColor = colorPicker.value;
+      }
+    });
+    cell.addEventListener('mouseup', e => {
+      isMouseDown = false;
+    });
   });
 }
-
 
 
