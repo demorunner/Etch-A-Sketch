@@ -5,27 +5,6 @@
     font-family: 'Roboto', arial;
 }
 
-
-/* .grid {
-    display: flex;
-    flex-direction: column;
-}
-
-.container1 {
-    display: flex;
-    width: 50px;
-    height: 50px;
-    gap: 5px;
-}
-
-.container2 {
-    display: flex;
-    flex-direction: column;
-    width: 50px;
-    height: 50px;
-    gap: 5px;
-} */
-
 .header {
     display: flex;
     justify-content: center;
@@ -45,13 +24,10 @@
   }
   
   .grid-cell {
+    display: flex;
     width: 30px;
     height: 30px;
     border: 1px solid black;
     
   }
-  
-  /* .cell-hover:hover {
-    background-color: yellow;
-  } */
   
