@@ -1,15 +1,20 @@
-document.body.onload = grid;
+//document.body.onload = grid;
 
 // creates a grid cell
-function grid() {
+function grid(newSize) {
 
   // Select the grid container element
   const container = document.querySelector('.grid-container');
+
+  // Calculate the new cell size based on the container size and the number of cells per side
+  let cellSize = container.offsetWidth / newSize;
   
   // Create 256 grid cells and add them to the container
-  for (let i = 0; i < 256; i++) {
+  for (let i = 0; i < newSize ** 2; i++) {
     const cell = document.createElement('div');
     cell.classList.add('grid-cell', `cell-${i}`);
+    cell.style.width = cellSize + 'px';
+    cell.style.height = cellSize + 'px';
     container.appendChild(cell);
   }
   
@@ -25,21 +30,27 @@ function grid() {
     const color = e.target.value;
   });
 
+
  // Add event listeners to each cell element
   cells.forEach(cell => {
     cell.addEventListener('mousedown', e => {
-      isMouseDown = true;
+      mouseDown = true;
       cell.style.backgroundColor = colorPicker.value;
     });
     cell.addEventListener('mousemove', e => {
-      if (isMouseDown) {
+      if (mouseDown) {
         cell.style.backgroundColor = colorPicker.value;
       }
     });
     cell.addEventListener('mouseup', e => {
-      isMouseDown = false;
+      mouseDown = false;
     });
   });
 }
 
 
+// Select the button element
+const button = document.getElementById('new-grid-button');
+button.addEventListener('click', e => {
+  grid(32);
+});
