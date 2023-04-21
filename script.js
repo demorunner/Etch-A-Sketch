@@ -1,4 +1,4 @@
-//document.body.onload = grid;
+document.body.onload = grid(16);
 
 // creates a grid cell
 function grid(newSize) {
@@ -8,6 +8,8 @@ function grid(newSize) {
 
   // Calculate the new cell size based on the container size and the number of cells per side
   let cellSize = container.offsetWidth / newSize;
+
+
   
   // Create 256 grid cells and add them to the container
   for (let i = 0; i < newSize ** 2; i++) {
@@ -30,7 +32,7 @@ function grid(newSize) {
     const color = e.target.value;
   });
 
-
+let mouseDown ;
  // Add event listeners to each cell element
   cells.forEach(cell => {
     cell.addEventListener('mousedown', e => {
@@ -48,6 +50,12 @@ function grid(newSize) {
   });
 }
 
+//select slider input
+function funSlide() {
+let slider = document.getElementById("size-range");
+console.log(slider.value);
+grid(slider.value);
+}
 
 // Select the button element
 const button = document.getElementById('new-grid-button');
