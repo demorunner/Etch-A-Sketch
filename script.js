@@ -9,7 +9,8 @@ function grid(newSize) {
   // Calculate the new cell size based on the container size and the number of cells per side
   let cellSize = container.offsetWidth / newSize;
 
-
+  //emptying container
+  container.innerHTML = '';
   
   // Create 256 grid cells and add them to the container
   for (let i = 0; i < newSize ** 2; i++) {
