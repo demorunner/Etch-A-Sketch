@@ -27,6 +27,15 @@ function grid(newSize) {
   // Select the color picker element
   const colorPicker = document.getElementById('color-picker');
 
+   // Add an event listener to Random-Color button disable the color picker
+   const randomColorButton = document.getElementById('Random-Color');
+
+  //enables RGB and disables color picker 
+  randomColorButton.addEventListener('click', e => {
+    colorPicker.disabled = true;
+    randomColorButton.textContent = 'Enable Color';
+  });
+
   // Listen for the input event on the color picker
   colorPicker.addEventListener('input', e => {
     // Get the value of the color picker
@@ -42,7 +51,12 @@ let mouseDown ;
     });
     cell.addEventListener('mousemove', e => {
       if (mouseDown) {
-        cell.style.backgroundColor = colorPicker.value;
+        //cell.style.backgroundColor = colorPicker.value;
+        if (colorPicker.disabled) {
+          cell.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+        } else {
+          cell.style.backgroundColor = colorPicker.value;
+        }
       }
     });
     cell.addEventListener('mouseup', e => {
@@ -61,5 +75,5 @@ grid(slider.value);
 // Select the button element
 const button = document.getElementById('new-grid-button');
 button.addEventListener('click', e => {
-  grid(32);
+  
 });
