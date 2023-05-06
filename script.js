@@ -1,79 +1,130 @@
-document.body.onload = grid(16);
+// Select the grid container element
+const container = document.querySelector(".grid-container");
 
-// creates a grid cell
+// Select the color picker element
+const colorPicker = document.getElementById("color-picker");
+
+// Get a reference to the Random-Color button element
+const defaultBtn = document.getElementById("default-btn");
+let useDefault = false;
+
+// Get a reference to the Random-Color button element
+const randomColorButton = document.getElementById("Random-Color");
+let useRandomColor = false;
+
+const eraseButton = document.getElementById("erase");
+let useErase = false;
+
+let mouseDown;
+
 function grid(newSize) {
-
   // Select the grid container element
-  const container = document.querySelector('.grid-container');
-
-  // Calculate the new cell size based on the container size and the number of cells per side
   let cellSize = container.offsetWidth / newSize;
-
   //emptying container
-  container.innerHTML = '';
-  
+  container.innerHTML = "";
+
   // Create 256 grid cells and add them to the container
   for (let i = 0; i < newSize ** 2; i++) {
-    const cell = document.createElement('div');
-    cell.classList.add('grid-cell', `cell-${i}`);
-    cell.style.width = cellSize + 'px';
-    cell.style.height = cellSize + 'px';
+    //creating cell div element
+    const cell = document.createElement("div");
+    cell.classList.add("grid-cell", `cell-${i}`);
+    cell.style.width = cellSize + "px";
+    cell.style.height = cellSize + "px";
     container.appendChild(cell);
   }
-  
-  // Select all the grid cells
-  const cells = document.querySelectorAll('.grid-cell');
 
-  // Select the color picker element
-  const colorPicker = document.getElementById('color-picker');
+  // Get a reference to all of the cell elements
+  const cells = document.querySelectorAll(".grid-cell");
 
-   // Add an event listener to Random-Color button disable the color picker
-   const randomColorButton = document.getElementById('Random-Color');
+  // Call the addEventListeners function and pass in the cells variable
+  addEventListeners(cells);
+  clearButton(cells);
+}
 
-  //enables RGB and disables color picker 
-  randomColorButton.addEventListener('click', e => {
-    colorPicker.disabled = true;
-    randomColorButton.textContent = 'Enable Color';
-  });
-
-  // Listen for the input event on the color picker
-  colorPicker.addEventListener('input', e => {
-    // Get the value of the color picker
-    const color = e.target.value;
-  });
-
-let mouseDown ;
- // Add event listeners to each cell element
-  cells.forEach(cell => {
-    cell.addEventListener('mousedown', e => {
+function addEventListeners(cells) {
+  // Add event listeners to each cell element
+  cells.forEach((cell) => {
+    cell.addEventListener("mousedown", (e) => {
       mouseDown = true;
-      cell.style.backgroundColor = colorPicker.value;
-    });
-    cell.addEventListener('mousemove', e => {
       if (mouseDown) {
-        //cell.style.backgroundColor = colorPicker.value;
-        if (colorPicker.disabled) {
-          cell.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-        } else {
+        if (useRandomColor) {
+          if (useErase) {
+            useErase = false;
+          }
+          cell.style.backgroundColor = randomColor();
+        } else if (!useRandomColor) {
           cell.style.backgroundColor = colorPicker.value;
+        }
+        if (useErase) {
+          cell.style.backgroundColor = "";
         }
       }
     });
-    cell.addEventListener('mouseup', e => {
+    cell.addEventListener("mousemove", (e) => {
+      if (mouseDown) {
+        if (useRandomColor) {
+          cell.style.backgroundColor = randomColor();
+        } else {
+          cell.style.backgroundColor = colorPicker.value;
+        }
+        if (useErase) {
+          cell.style.backgroundColor = "";
+        }
+      }
+    });
+    cell.addEventListener("mouseup", (e) => {
       mouseDown = false;
     });
   });
+
+  defaultBtn.addEventListener("click", (e) => {
+    setDefaultColor()
+  });
+
+  // Add a click event listener to the Random-Color button
+  randomColorButton.addEventListener("click", (e) => {
+    useRandomColor = !useRandomColor;
+  });
+
+  //added a click event listener for eraser button
+  eraseButton.addEventListener("click", () => {
+    useErase = !useErase;
+    useRandomColor = false;
+  });
 }
 
-//select slider input
+function setDefaultColor() {
+  useRandomColor = false; 
+  useErase = false;
+  colorPicker.value = "#000000";
+}
+
 function funSlide() {
-let slider = document.getElementById("size-range");
-console.log(slider.value);
-grid(slider.value);
+  let slider = document.getElementById("size-range");
+  // console.log(slider.value);
+  document.getElementById("slider-size").textContent =
+    slider.value + " X " + slider.value;
+  grid(slider.value);
 }
 
-// Select the button element
-const button = document.getElementById('new-grid-button');
-button.addEventListener('click', e => {
-  
-});
+function clearButton(cells) {
+  // Get a reference to the Clear button element
+  const clearBtn = document.getElementById("clear-btn");
+
+  // Add a click event listener to the Clear button and call the clearGrid function
+  clearBtn.addEventListener("click", (e) => {
+    cells.forEach((cell) => {
+      cell.style.backgroundColor = "";
+    });
+    useRandomColor = false;
+    useErase = false;
+  });
+}
+
+function randomColor() {
+  return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+    Math.random() * 256
+  )}, ${Math.floor(Math.random() * 256)})`;
+}
+
+document.body.onload = grid(16);
