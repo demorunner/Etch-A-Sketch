@@ -68,11 +68,6 @@
     color: white;
   }
 
-  .active {
-    background-color: blue;
-  }
-  
-
   .slidecontainer {
     display: flex;
     flex-direction: column;
