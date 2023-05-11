@@ -138,15 +138,16 @@ function changeButtonColor(buttonId) {
   const button = document.getElementById(buttonId);
 
   // Set the button style
-  button.style.backgroundColor = "yellow";
-  button.style.border = "2px solid black";
+  button.style.backgroundColor = "#212A3E";
+  button.style.color = "white";
+  // button.style.border = "2px solid black";
 
   // If there was a previously selected button and it's not the same as the current button,
   // remove the background color and border from the previously selected button
   if (lastButtonId && lastButtonId !== buttonId) {
     const lastButton = document.getElementById(lastButtonId);
-    lastButton.style.backgroundColor = "";
-    lastButton.style.border = "";
+    lastButton.style.backgroundColor = "#F1F6F9";
+    lastButton.style.color = "";
   }
 
   // Set the ID of the current button as the lastButtonId for future reference
