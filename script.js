@@ -83,12 +83,12 @@ function addEventListeners(cells) {
 
   // Add a click event listener to the Random-Color button
   randomColorButton.addEventListener("click", (e) => {
-    useRandomColor = !useRandomColor;
+    useRandomColor = !false;
   });
 
   //added a click event listener for eraser button
   eraseButton.addEventListener("click", () => {
-    useErase = !useErase;
+    useErase = true;
     useRandomColor = false;
   });
 }
@@ -96,16 +96,16 @@ function addEventListeners(cells) {
 function setDefaultColor() {
   useRandomColor = false; 
   useErase = false;
+  defaultBtn.style.backgroundColor = "#212A3E";
+  defaultBtn.style.color = "#F1F6F9";
   colorPicker.value = "#000000";
 }
 
-function funSlide() {
-  let slider = document.getElementById("size-range");
-  // console.log(slider.value);
-  document.getElementById("slider-size").textContent =
-    slider.value + " X " + slider.value;
-  grid(slider.value);
+function randomColor() {
+  return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+
 }
+
 
 function clearButton(cells) {
   // Get a reference to the Clear button element
@@ -122,34 +122,35 @@ function clearButton(cells) {
   });
 }
 
-function randomColor() {
-  return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-    Math.random() * 256
-  )}, ${Math.floor(Math.random() * 256)})`;
+function funSlide() {
+  let slider = document.getElementById("size-range");
+  // console.log(slider.value);
+  document.getElementById("slider-size").textContent =
+    slider.value + " X " + slider.value;
+  grid(slider.value);
 }
+
 
 // Declare the variable for the ID of the last selected button
 let lastButtonId = null;
-
 // Function to change the button styles
 function changeButtonColor(buttonId) {
-
   // Declare the variable for the ID of the last selected button
   const button = document.getElementById(buttonId);
-
   // Set the button style
   button.style.backgroundColor = "#212A3E";
   button.style.color = "white";
   // button.style.border = "2px solid black";
-
   // If there was a previously selected button and it's not the same as the current button,
   // remove the background color and border from the previously selected button
   if (lastButtonId && lastButtonId !== buttonId) {
     const lastButton = document.getElementById(lastButtonId);
     lastButton.style.backgroundColor = "#F1F6F9";
     lastButton.style.color = "";
+    
   }
-
+  defaultBtn.style.backgroundColor = "#F1F6F9";
+  defaultBtn.style.color = "black";
   // Set the ID of the current button as the lastButtonId for future reference
   lastButtonId = buttonId;
 }
@@ -160,15 +161,20 @@ defaultBtn.addEventListener("click", function() {
 
 randomColorButton.addEventListener("click", function() {
   changeButtonColor("Random-Color");
+  // defaultBtn.style.backgroundColor = "#F1F6F9";
+  // defaultBtn.style.color = "black";
 });
 
 eraseButton.addEventListener("click", function() {
   changeButtonColor("erase");
+  // defaultBtn.style.backgroundColor = "#F1F6F9";
+  // defaultBtn.style.color = "black";
 });
 
 const clearBtn = document.getElementById("clear-btn");
 clearBtn.addEventListener("click", function() {
   changeButtonColor("default-btn");
+  setDefaultColor()
 });
 
 
