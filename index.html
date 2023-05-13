@@ -18,30 +18,37 @@
 
         <div class="main-display">
 
-            <div class="tool-kit">
-                <input type="color" id="color-picker" value="#000000">
-
-                <button id="default-btn">Default</button>
-    
-                <button id="Random-Color">RGB</button>
-    
-                <button id="erase">ERASER</button>
-
-                <button id="clear-btn">CLEAR</button>
-    
-                <div class="slidecontainer">
-                    <div id="slider-size">16 x 16</div>
-                    <input id="size-range" type="range"  min="4" max="100" value="16" oninput="funSlide()">
-                </div>
-
-            </div>
+           
 
             <div class="grid-border">
                 <div class="grid-container">
                     <!-- create 256 divs using JavaScript -->
                 </div>
             </div>
+
+            
+
         </div>
+
+        <div class="tool-bar">
+            <div class="tool-kit">
+                <input type="color" id="color-picker" value="#000000">
+
+                <button id="default-btn">Default</button>
+
+                <button id="Random-Color">RGB</button>
+
+                <button id="erase">ERASER</button>
+
+                <button id="clear-btn">CLEAR</button>
+
+                <div class="slidecontainer">
+                    <div class="slider-text" id="slider-size">16 x 16</div>
+                    <input id="size-range" type="range"  min="4" max="100" value="16" oninput="funSlide()">
+                </div>
+
+            </div>
+    </div>
         
     </body>
 <script src="script.js" defer></script>
