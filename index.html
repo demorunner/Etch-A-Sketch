@@ -5,51 +5,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="style.css" />
-    
+
 </head>
 
-    <body>
+<body>
 
-        <div class="header">
-            <h1>Etch-a-Sketch</h1>
-        </div>
-
-        <div class="main-display">
-
-           
-
-            <div class="grid-border">
-                <div class="grid-container">
-                    <!-- create 256 divs using JavaScript -->
-                </div>
-            </div>
-
-            
-
-        </div>
-
-        <div class="tool-bar">
-            <div class="tool-kit">
-                <input type="color" id="color-picker" value="#000000">
-
-                <button id="default-btn">Default</button>
-
-                <button id="Random-Color">RGB</button>
-
-                <button id="erase">ERASER</button>
-
-                <button id="clear-btn">CLEAR</button>
-
-                <div class="slidecontainer">
-                    <div class="slider-text" id="slider-size">16 x 16</div>
-                    <input id="size-range" type="range"  min="4" max="100" value="16" oninput="funSlide()">
-                </div>
-
-            </div>
+    <!-- Top Heading -->
+    <div class="header">
+        <h1>Etch-A-Sketch</h1>
     </div>
+
+    <!-- middle section containing grid -->
+    <div class="main-display">
+
+        <div class="grid-border">
+            <div class="grid-container">
+                <!-- create 256 divs using JavaScript -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- bottom section containing tools panel -->
+    <div class="tool-bar">
+        <div class="tool-kit">
+            <!-- color selector -->
+            <input type="color" id="color-picker" value="#000000">
+
+            <!-- default settings button -->
+            <button id="default-btn">Default</button>
+
+            <!-- random color button -->
+            <button id="Random-Color">RGB</button>
+
+            <!-- eraser button -->
+            <button id="erase">ERASER</button>
+
+            <!-- clear all/reset button -->
+            <button id="clear-btn">CLEAR</button>
+
+            <!-- slider for controlling grid cell size -->
+            <div class="slidecontainer">
+                <div class="slider-text" id="slider-size">16 x 16</div>
+                <input id="size-range" type="range" min="4" max="100" value="16" oninput="funSlide()">
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
         
-    </body>
+        <p>
+            Made By <a href="https://github.com/demorunner">demorunner</a> | <a href="https://github.com/demorunner/Etch-A-Sketch">Source</a> 
+        </p>
+        
+    </footer>
+
+</body>
 <script src="script.js" defer></script>
+
 </html>
